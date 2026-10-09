@@ -1,0 +1,21 @@
+<header class="nlnc-header">
+  <div class="nlnc-container nlnc-nav-wrap">
+    <a class="nlnc-brand" href="{{ url_for('views.static_html', route='/') }}"><span class="brand-star" aria-hidden="true">✳</span><span>{{ Configs.ctf_name }}</span></a>
+    <button class="nlnc-menu-button" type="button" aria-expanded="false" aria-controls="nlnc-nav">MENU <span>+</span></button>
+    <nav id="nlnc-nav" class="nlnc-nav" aria-label="Main navigation">
+      <a href="{{ url_for('views.static_html', route='/') }}">HOME</a>
+      {% for page in Plugins.user_menu_pages %}<a href="{{ page.route }}" {% if page.link_target %}target="{{ page.link_target }}"{% endif %}>{{ page.title }}</a>{% endfor %}
+      <a class="nlnc-nav-challenges" href="{{ url_for('challenges.listing') }}">CHALLENGES</a>
+      <a href="{{ url_for('scoreboard.listing') }}">SCOREBOARD</a>
+      {% if Configs.account_visibility != 'admins' and Configs.user_mode == 'teams' %}<a href="{{ url_for('teams.listing') }}">TEAMS</a>{% endif %}
+      {% if Configs.account_visibility != 'admins' and Configs.user_mode == 'users' %}<a href="{{ url_for('users.listing') }}">USERS</a>{% endif %}
+      {% if authed() %}
+        <a href="{{ url_for('views.settings') }}">{{ User.name }}</a>
+        {% if is_admin() %}<a href="{{ url_for('admin.view') }}">ADMIN</a>{% endif %}
+        <a href="{{ url_for('auth.logout') }}" class="nav-muted">LOGOUT</a>
+      {% else %}
+        <a href="{{ url_for('auth.login') }}">LOGIN</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>

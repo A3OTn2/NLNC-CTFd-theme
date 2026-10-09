@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="nlnc-page-title nlnc-container"><div class="nlnc-eyebrow">PLAYER PROFILE / TEAM</div><h1>{{ team.name }}<span>✳</span></h1>{% if team.affiliation %}<p>{{ team.affiliation }}</p>{% endif %}</div>
+<div class="nlnc-container nlnc-profile"><div class="nlnc-profile-head"><div class="profile-avatar">{{ team.name[:2] | upper }}</div><div><div class="nlnc-eyebrow">TEAM FILE / {{ team.id }}</div><h2>{{ team.name }}</h2>{% if scores_visible() and score %}<p>{{ score }} POINTS{% if place %} / PLACE {{ place }}{% endif %}</p>{% endif %}</div></div><div class="nlnc-members"><h3>MEMBERS</h3>{% for member in team.members %}<a href="{{ url_for('users.public', user_id=member.id) }}"><span>{{ member.name }}</span><small>{{ member.affiliation or 'PLAYER' }} · {{ member.score }} pts</small></a>{% else %}<div class="nlnc-empty">NO MEMBERS_</div>{% endfor %}</div>{% if team.website and (team.website.startswith('http://') or team.website.startswith('https://')) %}<a class="nlnc-button nlnc-button-primary" href="{{ team.website }}" target="_blank" rel="noopener">TEAM WEBSITE ↗</a>{% endif %}</div>
+{% endblock %}
+{% block scripts %}<script>window.TEAM={{ {'type':'team','id':team.id,'name':team.name,'account_id':team.id}|tojson }};</script>{{ Assets.js("assets/js/teams/public.js", theme="core") }}{% endblock %}

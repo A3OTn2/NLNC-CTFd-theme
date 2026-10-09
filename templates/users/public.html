@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="nlnc-page-title nlnc-container"><div class="nlnc-eyebrow">PLAYER PROFILE / USER</div><h1>{{ user.name }}<span>✳</span></h1>{% if user.team_id %}<p><a class="text-link" href="{{ url_for('teams.public', team_id=user.team_id) }}">{{ user.team.name }}</a></p>{% endif %}</div>
+<div class="nlnc-container nlnc-profile"><div class="nlnc-profile-head"><div class="profile-avatar">{{ user.name[:2] | upper }}</div><div><div class="nlnc-eyebrow">PLAYER FILE / {{ user.id }}</div><h2>{{ user.name }}</h2>{% if account and account.score is not none %}<p>{{ account.score }} POINTS{% if account.place %} / PLACE {{ account.place }}{% endif %}</p>{% endif %}</div></div><h3 class="profile-section-title">SOLVES</h3>{% if user.solves %}<div class="nlnc-solves">{% for solve in user.solves %}<a href="{{ url_for('challenges.listing') }}#{{ solve.challenge.name }}-{{ solve.challenge.id }}"><span>{{ solve.challenge.name }}</span><small>{{ solve.challenge.category }} · {{ solve.challenge.value }} pts</small></a>{% endfor %}</div>{% else %}<div class="nlnc-empty">NO SOLVES YET_</div>{% endif %}</div>
+{% endblock %}
+{% block scripts %}<script>window.USER={{ {'type':'user','id':user.id,'name':user.name,'account_id':user.id}|tojson }};</script>{{ Assets.js("assets/js/users/public.js", theme="core") }}{% endblock %}

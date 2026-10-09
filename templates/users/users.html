@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="nlnc-page-title nlnc-container"><div class="nlnc-eyebrow">DIRECTORY / PLAYERS</div><h1>USERS<span>✳</span></h1><p>People on the other side of the keyboard.</p></div>
+<div class="nlnc-container">
+  {% with form = Forms.users.PublicUserSearchForm(field=field, q=q) %}<form method="GET" class="nlnc-search"><div>{{ form.field(class="form-select") }}</div><div>{{ form.q(class="form-control", placeholder="Search users") }}</div><button class="nlnc-button nlnc-button-primary" type="submit">SEARCH ↗</button></form>{% endwith %}
+  <div class="nlnc-team-grid">{% for user in users.items %}<a class="nlnc-team-card" href="{{ url_for('users.public', user_id=user.id) }}"><span class="challenge-id">PLAYER / {{ user.id }}</span><h2>{{ user.name | truncate(50) }}</h2><span>{% if user.affiliation %}{{ user.affiliation }}{% else %}PLAYER PROFILE{% endif %} <b>→</b></span></a>{% else %}<div class="nlnc-empty">NO USERS FOUND_</div>{% endfor %}</div>
+</div>
+{% endblock %}

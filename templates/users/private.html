@@ -1,0 +1,5 @@
+{% extends "users/public.html" %}
+{% block scripts %}
+  <script>window.USER={{ {'type':'user','id':user.id,'name':user.name,'account_id':user.id}|tojson }};</script>
+  {{ Assets.js("assets/js/users/private.js", theme="core") }}
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends "teams/public.html" %}
+{% block scripts %}
+  <script>window.TEAM={{ {'type':'team','id':team.id,'name':team.name,'account_id':team.id}|tojson }};</script>
+  {{ Assets.js("assets/js/teams/private.js", theme="core") }}
+{% endblock %}

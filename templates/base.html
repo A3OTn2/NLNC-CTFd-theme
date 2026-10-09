@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{ title or Configs.ctf_name }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17110D">
+  <link rel="shortcut icon" href="{{ Configs.ctf_small_icon }}" type="image/x-icon">
+  {{ meta | safe }}
+  {% block stylesheets %}
+    {{ Assets.css("assets/css/nlnczag.css") }}
+  {% endblock %}
+  {{ Plugins.styles }}
+  {{ Assets.js("assets/js/color_mode_switcher.js", theme="core", type=None) }}
+  <script>
+    window.init = {
+      urlRoot: "{{ request.script_root }}",
+      csrfNonce: "{{ Session.nonce }}",
+      userMode: "{{ Configs.user_mode }}",
+      userId: {{ Session.id }},
+      userName: {{ User.name | tojson }},
+      userEmail: {{ User.email | tojson }},
+      userVerified: {{ User.verified | tojson }},
+      teamId: {{ Team.id | tojson }},
+      teamName: {{ Team.name | tojson }},
+      start: {{ Configs.start | tojson }},
+      end: {{ Configs.end | tojson }},
+      themeSettings: {{ Configs.theme_settings | tojson }},
+      eventSounds: []
+    };
+  </script>
+  {{ Configs.theme_header }}
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  {% include "components/navbar.html" %}
+  <main id="main-content" role="main">{% block content %}{% endblock %}</main>
+  {% include "components/snackbar.html" %}
+  {% include "components/notifications.html" %}
+  <footer class="nlnc-footer"><div class="nlnc-container"><span class="footer-mark">✳ {{ Configs.ctf_name }}</span><span>{% trans %}Powered by CTFd{% endtrans %}</span></div></footer>
+  {% block scripts %}{{ Assets.js("assets/js/page.js", theme="core") }}{% endblock %}
+  {{ Assets.js("assets/js/nlnczag.js") }}
+  {{ Plugins.scripts }}
+  {{ Configs.theme_footer }}
+</body>
+</html>

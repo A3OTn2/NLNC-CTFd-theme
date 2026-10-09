@@ -1,0 +1,12 @@
+{
+  "assets/css/nlnczag.css": {
+    "file": "assets/css/nlnczag.css",
+    "src": "assets/css/nlnczag.css",
+    "isEntry": true
+  },
+  "assets/js/nlnczag.js": {
+    "file": "assets/js/nlnczag.js",
+    "src": "assets/js/nlnczag.js",
+    "isEntry": true
+  }
+}
