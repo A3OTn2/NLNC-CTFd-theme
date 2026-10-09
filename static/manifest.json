@@ -4,6 +4,11 @@
     "src": "assets/css/nlnczag.css",
     "isEntry": true
   },
+  "assets/css/challenge.css": {
+    "file": "assets/css/challenge.css",
+    "src": "assets/css/challenge.css",
+    "isEntry": true
+  },
   "assets/js/nlnczag.js": {
     "file": "assets/js/nlnczag.js",
     "src": "assets/js/nlnczag.js",
