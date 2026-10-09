@@ -1,18 +1,12 @@
 # NLNCzag — CTFd theme
 
-Тема CTFd в стилистике сайта NLNCzag: тёмный коричневый фон, тёплый orange/amber, кремовый текст, пиксельные рамки и компактная old-web композиция.
+Тема CTFd в стилистике сайта [nologs-nocrime](https://n0logsn0crime.ru/)
 
 ## Установка
 
 Скопируйте папку `ctfdNLNCtheme` в `CTFd/CTFd/themes/`:
 
-```bash
-cp -r ctfdNLNCtheme /path/to/CTFd/CTFd/themes/nlnczag
-```
-
 Перезапустите CTFd и выберите тему `NLNCzag` в админ-панели: **Admin Panel → Config → Theme**.
-
-Для Docker-развёртывания можно примонтировать тему:
 
 Затем пересоздайте контейнер CTFd. Тема не содержит внешних шрифтов, изображений или CDN-зависимостей.
 
